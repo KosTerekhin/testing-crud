@@ -1,7 +1,7 @@
 {
     "mongoURI": "mongodb+srv://superhero:superhero123@cluster0-s7c3a.mongodb.net/test?retryWrites=true&w=majority",
     "secret": "secret",
-    "proxy": "https://practice-crud.herokuapp.com/",
+    "proxy": "https://practice-crud.herokuapp.com/api",
     "sampleData": [
         {
             "nickname":"Batman", 
