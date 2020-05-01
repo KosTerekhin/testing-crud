@@ -1,0 +1,147 @@
+{
+    "mongoURI": "mongodb+srv://superhero:superhero123@cluster0-s7c3a.mongodb.net/test?retryWrites=true&w=majority",
+    "secret": "secret",
+    "proxy": "http://localhost:5000/uploads/",
+    "sampleData": [
+        {
+            "nickname":"Batman", 
+            "real_name":"Bruce Wayne",
+            "origin_description":"DC Comics", 
+            "superpowers":"Detective Comics #27",
+            "catch_phrase":"Bruce Wayne"
+        },
+        {
+            "nickname":"Superman", 
+            "real_name":"Kal-El",
+            "origin_description":"DC Comics", 
+            "superpowers":"Action Comics #1",
+            "catch_phrase":"Kal-El"
+        },
+        {
+            "nickname":"Flash", 
+            "real_name":"Jay Garrick",
+            "origin_description":"DC Comics", 
+            "superpowers":"Flash Comics #1",
+            "catch_phrase":"Jay Garrick, Barry Allen, Wally West, Bart Allen"
+        },
+        {
+            "nickname":"GreenLantern", 
+            "real_name":"Alan Scott",
+            "origin_description":"DC Comics", 
+            "superpowers":"All-American Comics #16",
+            "catch_phrase":"Alan Scott, Hal Jordan, Guy Gardner, John Stewart, Kyle Raynor, Jade, Sinestro, Simon Baz"
+        },
+        {
+            "nickname":"GreenArrow", 
+            "real_name":"Oliver Queen",
+            "origin_description":"DC Comics", 
+            "superpowers":"More Fun Comics #73",
+            "catch_phrase":"Oliver Queen"
+        },
+        {
+            "nickname":"WonderWoman", 
+            "real_name":"Princess Diana",
+            "origin_description":"DC Comics", 
+            "superpowers":"All Star Comics #8",
+            "catch_phrase":"Princess Diana"
+        },
+        {
+            "nickname":"MartianManhunter", 
+            "real_name":"J'onn J'onzz",
+            "origin_description":"DC Comics", 
+            "superpowers":"Detective Comics #225",
+            "catch_phrase":"Martian Manhunter"
+        },
+        {
+            "nickname":"RobinNightwing", 
+            "real_name":"Dick Grayson",
+            "origin_description":"DC Comics", 
+            "superpowers":"Detective Comics #38",
+            "catch_phrase":"Dick Grayson"
+        },
+        {
+            "nickname":"BlueBeetle", 
+            "real_name":"Dan Garret",
+            "origin_description":"DC Comics", 
+            "superpowers":"Mystery Men Comics #1",
+            "catch_phrase":"Dan Garret, Ted Kord, Jaime Reyes"
+        },
+        {
+            "nickname":"BlackCanary", 
+            "real_name":"Dinah Drake",
+            "origin_description":"DC Comics", 
+            "superpowers":"Flash Comics #86",
+            "catch_phrase":"Dinah Drake, Dinah Lance"
+        },
+        {
+            "nickname":"SpiderMan", 
+            "real_name":"Peter Parker",
+            "origin_description":"Marvel Comics", 
+            "superpowers":"Amazing Fantasy #15",
+            "catch_phrase":"Peter Parker"
+        },
+        {
+            "nickname":"CaptainAmerica", 
+            "real_name":"Steve Rogers",
+            "origin_description":"Marvel Comics", 
+            "superpowers":"Captain America Comics #1",
+            "catch_phrase":"Steve Rogers"
+        },
+        {
+            "nickname":"IronMan", 
+            "real_name":"Tony Stark",
+            "origin_description":"Marvel Comics", 
+            "superpowers":"Tales of Suspense #39",
+            "catch_phrase":"Tony Stark"
+        },
+        {
+            "nickname":"Thor", 
+            "real_name":"Thor Odinson",
+            "origin_description":"Marvel Comics", 
+            "superpowers":"Journey into Myster #83",
+            "catch_phrase":"Thor Odinson"
+        },
+        {
+            "nickname":"Hulk", 
+            "real_name":"Bruce Banner",
+            "origin_description":"Marvel Comics", 
+            "superpowers":"The Incredible Hulk #1",
+            "catch_phrase":"Bruce Banner"
+        },
+        {
+            "nickname":"Wolverine", 
+            "real_name":"James Howlett",
+            "origin_description":"Marvel Comics", 
+            "superpowers":"The Incredible Hulk #180",
+            "catch_phrase":"James Howlett"
+        },
+        {
+            "nickname":"Daredevil", 
+            "real_name":"Matthew Michael Murdock",
+            "origin_description":"Marvel Comics", 
+            "superpowers":"Daredevil #1",
+            "catch_phrase":"Matthew Michael Murdock"
+        },
+        {
+            "nickname":"Hawkeye", 
+            "real_name":"Clinton Francis Barton",
+            "origin_description":"Marvel Comics", 
+            "superpowers":"Tales of Suspense #57",
+            "catch_phrase":"Clinton Francis Barton"
+        },
+        {
+            "nickname":"Cyclops", 
+            "real_name":"Scott Summers",
+            "origin_description":"Marvel Comics", 
+            "superpowers":"X-Men #1",
+            "catch_phrase":"Scott Summers"
+        },
+        {
+            "nickname":"SilverSurfer", 
+            "real_name":"Norrin Radd",
+            "origin_description":"Marvel Comics", 
+            "superpowers":"The Fantastic Four #48",
+            "catch_phrase":"Norrin Radd"
+        }
+    ]
+}

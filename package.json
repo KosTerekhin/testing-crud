@@ -1,0 +1,31 @@
+{
+  "name": "Superheroes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "clientinstall": "npm install --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "config": "^3.3.1",
+    "express": "^4.17.1",
+    "express-validation": "^3.0.2",
+    "express-validator": "^6.4.0",
+    "filepond": "^4.13.4",
+    "mongoose": "^5.9.9",
+    "multer": "^1.4.2",
+    "react-bootstrap": "^1.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^5.1.0",
+    "nodemon": "^2.0.3"
+  }
+}
