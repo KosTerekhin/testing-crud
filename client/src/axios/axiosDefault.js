@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default axios.create({
-	baseURL: 'http://localhost:5000/api',
+	baseURL: 'https://practice-crud.herokuapp.com/',
 	headers: {
 		common: {
 			'Content-Type': 'application/json'
