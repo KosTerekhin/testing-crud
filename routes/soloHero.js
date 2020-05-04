@@ -14,7 +14,6 @@ router.get('/:id', idCheck, async (req, res) => {
 		let hero = await Heroes.findOne({ _id: req.params.id });
 		return res.json(hero);
 	} catch (error) {
-		console.error(error.message);
 		return res.status(500).send('Internal Server Error');
 	}
 });

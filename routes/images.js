@@ -8,6 +8,7 @@ const multer = require('multer');
 const upload = multer({ storage });
 
 const cloudinary = require('cloudinary');
+
 cloudinary.config({
 	cloud_name: 'dkstecshe',
 	api_key: process.env.CLOUDINARY_API_KEY,
@@ -53,7 +54,10 @@ router.delete('/:id', idCheck, async (req, res) => {
 		// deleting images from cloud storage
 		for (let i = 0; i < req.body.length; i++) {
 			await cloudinary.v2.api.delete_resources(req.body[i], function(error, result) {
-				console.log(result, error);
+				if (error) {
+					return res.status(500).send('Cloudinary error');
+				}
+				console.log(result);
 			});
 		}
 		// updating DB
