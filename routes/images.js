@@ -9,7 +9,6 @@ const upload = multer({ storage });
 
 const cloudinary = require('cloudinary');
 
-const cloudinary = require('cloudinary');
 cloudinary.config({
 	cloud_name: 'dkstecshe',
 	// api_key: process.env.CLOUDINARY_API_KEY,
