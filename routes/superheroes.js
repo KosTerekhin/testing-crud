@@ -42,27 +42,28 @@ router.get('/', async (req, res) => {
 router.post('/', upload.single('images'), [ fileFilter, textFieldCheck, nicknameCheck ], async (req, res) => {
 	const newHero = {};
 	// uploading image to the cloudinary
-	await cloudinary.v2.uploader.upload(req.file.path, (err, result) => {
-		if (err) {
-			return res.status(501).send('Cloudinary Server Error');
-		}
-		// add cloudinary url for the images array
-		newHero.images = [
-			{
-				id: result.public_id,
-				url: result.secure_url
-			}
-		];
-	});
-
-	// adding remaining properties
-	Object.keys(req.body).forEach((key) => {
-		newHero[key] = req.body[key];
-	});
-
-	hero = new Heroes(newHero);
+	console.log('uploading');
 
 	try {
+		await cloudinary.uploader.upload(req.file.path, (err, result) => {
+			if (err) {
+				return res.status(501).send('Cloudinary Server Error');
+			}
+			// add cloudinary url for the images array
+			newHero.images = [
+				{
+					id: result.public_id,
+					url: result.secure_url
+				}
+			];
+		});
+		console.log('failed after cloudinary');
+		// adding remaining properties
+		Object.keys(req.body).forEach((key) => {
+			newHero[key] = req.body[key];
+		});
+
+		hero = new Heroes(newHero);
 		await hero.save();
 		return res.json(hero);
 	} catch (error) {
