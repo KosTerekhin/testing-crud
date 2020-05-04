@@ -53,7 +53,7 @@ export default (state, action) => {
 				...state,
 				currentHero: {
 					...state.currentHero,
-					images: [ ...state.currentHero.images, ...action.payload ]
+					images: action.payload
 				}
 			};
 		}

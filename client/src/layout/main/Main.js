@@ -23,8 +23,8 @@ const Main = ({ history, match: { params } }) => {
 
 	useEffect(
 		() => {
-			if (!allHeroes.length || (error && error.status === 'resolved')) {
-				// fetching heros if we dont have any yet
+			// fetching heros if we dont have any yet or if we came from a different page
+			if (!allHeroes.length || (error && error.status === 'resolved') || currentHero) {
 				API.superheroes
 					.getAll()
 					.then((res) => {
@@ -39,14 +39,14 @@ const Main = ({ history, match: { params } }) => {
 				clearCurrentAndError();
 			}
 
+			// updating pages after we deleted / added a hero
 			if (allHeroes.length) {
-				// updating pages after we deleted / added a hero
 				if (pageNumber < 1 || pageNumber > Math.ceil(heroList.length / ITEMS_PER_PAGE)) {
 					history.push('/');
 				}
 			}
 
-			// if we came from Hero's page -> clear state
+			// if we came from Hero's page, then clear currentHero and Error
 			(currentHero || (error && error.msg)) && clearCurrentAndError();
 		},
 		// eslint-disable-next-line
@@ -57,7 +57,7 @@ const Main = ({ history, match: { params } }) => {
 		<Container className="mt-5">
 			<Row className="d-flex justify-content-around">
 				{(() => {
-					if (!heroList) return <Spinner />;
+					if (!heroList || (error && error.status === 'resolved') || currentHero) return <Spinner />;
 
 					const startIndex = (pageNumber - 1) * ITEMS_PER_PAGE;
 					let pageItems = heroList.slice(startIndex, startIndex + ITEMS_PER_PAGE);

@@ -24,7 +24,15 @@ const HeroesSchema = mongoose.Schema({
 	},
 	images: [
 		{
-			type: String
+			_id: false,
+			id: {
+				type: String,
+				required: true
+			},
+			url: {
+				type: String,
+				required: true
+			}
 		}
 	]
 });

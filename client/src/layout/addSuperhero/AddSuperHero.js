@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Container, Row, Button, Form, Col } from 'react-bootstrap';
 
 import HeroesContext from '../../state/superheroes/HeroesContext';
@@ -23,7 +23,13 @@ const AddSuperHero = () => {
 	const [ inputs, setInputs ] = useState(initState);
 
 	// clear state if we came from a different page
-	currentHero && clearCurrentAndError();
+	useEffect(
+		() => {
+			currentHero && clearCurrentAndError();
+		},
+		// eslint-disable-next-line
+		[ currentHero ]
+	);
 
 	// saving changes in bio
 	const handleChange = (e) => {
@@ -36,34 +42,34 @@ const AddSuperHero = () => {
 		setInputs(initState);
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setSpinner(true);
 
 		const validator = [];
-		let arrayData = [ ...fileInput.current.files ];
+		const arrayData = [ ...fileInput.current.files ];
 		let formData = new FormData();
 
+		// creating formData for out request and validating fields
 		Object.keys(inputs).forEach((key) => {
-			// adding hero's BIO into req
 			formData.append(`${key}`, inputs[key]);
-
 			if (key === 'images' || key === '_id' || key === '__v') {
 				return;
 			} else {
 				// validation
-				if (inputs[key].trim().length < 1) {
+				if (!inputs[key].trim().length) {
 					validator.push(key);
 				}
 			}
 		});
 
-		// validation error
+		// checking for validation errors
 		if (validator.length || !arrayData.length) {
 			setError({
 				msg: `Please select a photo and fill in all the fields: ${[ ...validator ]}`
 			});
-			setSpinner(false);
-			return;
+
+			return setSpinner(false);
 		}
 
 		// adding image into req
@@ -72,25 +78,22 @@ const AddSuperHero = () => {
 		});
 
 		// sending POST to the the server -> adding new SH
-		setSpinner(true);
-		API.superheroes
-			.add(formData)
-			.then((res) => {
-				addNewHero(res.data);
-				setError({
-					msg: 'SuperHero added!',
-					btn: true,
-					status: 'resolved'
-				});
-
-				setInputs(initState);
-			})
-			.catch((error) => {
-				setError({
-					msg: error.response.data
-				});
-				throw error;
+		try {
+			const res = await API.superheroes.add(formData);
+			addNewHero(res.data);
+			setError({
+				msg: 'SuperHero added!',
+				btn: true,
+				status: 'resolved'
 			});
+
+			setInputs(initState);
+		} catch (error) {
+			setError({
+				msg: error.response.data
+			});
+		}
+
 		setSpinner(false);
 	};
 

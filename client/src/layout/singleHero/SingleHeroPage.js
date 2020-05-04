@@ -27,10 +27,10 @@ const SingleHeroPage = (props) => {
 	useEffect(
 		() => {
 			if (!currentHero && !error) {
-				console.log('fetching');
 				API.solohero
 					.getOne(props.location.pathname.replace(/\/superhero\//, ''))
 					.then((res) => {
+						setSpinner(false);
 						if (!res.data) {
 							return setError({
 								msg: 'Hero does not exist',
@@ -43,11 +43,11 @@ const SingleHeroPage = (props) => {
 					})
 					.catch((error) => {
 						setError({
-							msg: error
+							msg: error.response.data,
+							btn: true
 						});
+						setSpinner(false);
 					});
-
-				setSpinner(false);
 			}
 		},
 		// eslint-disable-next-line
@@ -55,28 +55,24 @@ const SingleHeroPage = (props) => {
 	);
 
 	// removing the entire hero -> DELETE req
-	const handleDelete = () => {
+	const handleDelete = async () => {
 		setSpinner(true);
-		API.solohero
-			.deleteOne(currentHero._id)
-			.then((res) => {
-				setSpinner(false);
-				deleteHero(res.data);
-			})
-			.catch((error) => {
-				setSpinner(false);
-				setError({
-					msg: error.response.data
-				});
+
+		try {
+			const res = API.solohero.deleteOne(currentHero._id);
+			deleteHero(res.data);
+		} catch (error) {
+			setError({
+				msg: error.response.data
 			});
+		}
+		setSpinner(false);
 	};
 
 	if (spinner) {
 		return <Spinner />;
 	} else {
-		if (!currentHero) {
-			return null;
-		} else {
+		if (currentHero) {
 			return (
 				<Container className="mt-4">
 					<Row>
@@ -106,6 +102,8 @@ const SingleHeroPage = (props) => {
 					</Row>
 				</Container>
 			);
+		} else {
+			return null;
 		}
 	}
 };

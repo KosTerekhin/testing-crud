@@ -12,7 +12,7 @@ const HeroElement = (props) => {
 
 	// setting main photo
 	let src = defaultImg;
-	images[0] && (src = images[0]);
+	images[0] && (src = images[0].url);
 
 	return (
 		<Card style={{ width: '29%' }} className="mb-4">
@@ -25,7 +25,7 @@ const HeroElement = (props) => {
 					maxHeight: '200px'
 				}}
 			/>
-			<Card.Body className="d-flex flex-column justify-content-center">
+			<Card.Body className="d-flex flex-column justify-content-end">
 				<Card.Title style={{ textAlign: 'center' }}>{nickname}</Card.Title>
 				<Button variant="primary" onClick={handleClick}>
 					View more

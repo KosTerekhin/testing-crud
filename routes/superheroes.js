@@ -1,13 +1,18 @@
 const express = require('express');
-const multer = require('multer');
-const config = require('config');
-const proxy = config.get('proxy');
+const router = express.Router();
+
 const { storage, fileFilter } = require('../config/multer');
 const { textFieldCheck, nicknameCheck } = require('../config/validations');
 
-const router = express.Router();
-
+const multer = require('multer');
 const upload = multer({ storage });
+
+const cloudinary = require('cloudinary');
+cloudinary.config({
+	cloud_name: 'dkstecshe',
+	api_key: process.env.CLOUDINARY_API_KEY,
+	api_secret: process.env.CLOUDINARY_API_SECRET
+});
 
 const Heroes = require('../schema/Heroes');
 
@@ -35,7 +40,22 @@ router.get('/', async (req, res) => {
 //  I assume that every superhero has photos that only belong to him
 // 	and because of that images are stored inside of each superhero
 router.post('/', upload.single('images'), [ fileFilter, textFieldCheck, nicknameCheck ], async (req, res) => {
-	const newHero = { images: [ proxy + req.file.filename ] };
+	const newHero = {};
+	// uploading image to the cloudinary
+	await cloudinary.v2.uploader.upload(req.file.path, (err, result) => {
+		if (err) {
+			return res.status(501).send('Cloudinary Server Error');
+		}
+		// add cloudinary url for the images array
+		newHero.images = [
+			{
+				id: result.public_id,
+				url: result.secure_url
+			}
+		];
+	});
+
+	// adding remaining properties
 	Object.keys(req.body).forEach((key) => {
 		newHero[key] = req.body[key];
 	});

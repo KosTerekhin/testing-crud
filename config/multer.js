@@ -1,19 +1,17 @@
 const multer = require('multer');
 
 const storage = multer.diskStorage({
-	destination: (req, file, cb) => {
-		cb(null, './uploads/');
-	},
-	filename: (req, file, cb) => {
-		cb(null, Date.now() + file.originalname);
+	filename: function(req, file, callback) {
+		callback(null, Date.now() + '-' + file.originalname);
 	}
 });
 
 const fileFilter = (req, res, next) => {
-	if (req.file.mimetype === 'image/jpeg' || req.file.mimetype === 'image/png' || req.file.mimetype === 'image/jpg') {
+	console.log(req.file);
+	if (req.file.originalname.match(/\.(jpg|jpeg|png)$/i)) {
 		next();
 	} else {
-		return res.status(402).send('Picture should be either JPEG/JPG or PNG');
+		return res.status(402).send('Only image files are allowed!');
 	}
 };
 
@@ -21,12 +19,12 @@ const multipleFileFilter = (req, res, next) => {
 	const length = req.files.length;
 	if (
 		req.files.filter((file) => {
-			return file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'image/jpg';
+			return file.originalname.match(/\.(jpg|jpeg|png)$/i);
 		}).length == length
 	) {
 		next();
 	} else {
-		return res.status(402).send('Pictures should be either JPEG/JPG or PNG');
+		return res.status(402).send('Only image files are allowed!');
 	}
 };
 

@@ -1,12 +1,11 @@
 const express = require('express');
-const mongoose = require('mongoose');
-
-const Heroes = require('../schema/Heroes');
-const { nicknameCheck, idCheck } = require('../config/validations');
-
 const router = express.Router();
 
+const { nicknameCheck, idCheck } = require('../config/validations');
+
+const mongoose = require('mongoose');
 mongoose.set('useFindAndModify', false);
+const Heroes = require('../schema/Heroes');
 
 // get all hero's details
 // fetching the entire data
