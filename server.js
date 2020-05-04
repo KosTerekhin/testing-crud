@@ -2,7 +2,7 @@ const express = require('express');
 const connectDB = require('./config/db');
 const path = require('path');
 const bodyParser = require('body-parser');
-
+require('dotenv').config();
 const app = express();
 
 // Connect Database
@@ -10,7 +10,6 @@ connectDB();
 
 // fixing CORS
 app.use(express.json({ extended: false }));
-app.use('/uploads', express.static('uploads'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -26,7 +25,6 @@ app.use((req, res, next) => {
 
 // ROUTES
 app.use('/api/superheroes', require('./routes/superheroes'));
-app.use('/api/sample', require('./routes/sampleData'));
 app.use('/api/solohero', require('./routes/soloHero'));
 app.use('/api/images', require('./routes/images'));
 
