@@ -7,7 +7,6 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, res, next) => {
-	console.log(req.file);
 	if (req.file.originalname.match(/\.(jpg|jpeg|png)$/i)) {
 		next();
 	} else {

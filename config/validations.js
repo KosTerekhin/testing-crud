@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const Heroes = require('../schema/Heroes');
 
 const nicknameCheck = async (req, res, next) => {
@@ -9,7 +8,6 @@ const nicknameCheck = async (req, res, next) => {
 		}
 		next();
 	} catch (error) {
-		console.log(error);
 		next();
 	}
 };
@@ -18,7 +16,6 @@ const idCheck = async (req, res, next) => {
 	try {
 		await Heroes.findOne({ _id: req.params.id });
 	} catch (error) {
-		console.log(error);
 		return res.status(401).send('Hero not found - wrong ID');
 	}
 	next();

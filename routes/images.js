@@ -9,10 +9,13 @@ const upload = multer({ storage });
 
 const cloudinary = require('cloudinary');
 
+const cloudinary = require('cloudinary');
 cloudinary.config({
 	cloud_name: 'dkstecshe',
-	api_key: process.env.CLOUDINARY_API_KEY,
-	api_secret: process.env.CLOUDINARY_API_SECRET
+	// api_key: process.env.CLOUDINARY_API_KEY,
+	// api_secret: process.env.CLOUDINARY_API_SECRET
+	api_key: '749761723165925',
+	api_secret: 'svFjogDds-XwbmhmewxpwwEv-_I'
 });
 
 const Heroes = require('../schema/Heroes');
